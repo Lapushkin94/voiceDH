@@ -6,18 +6,35 @@ import com.group.interview.repositories.VoiceRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @Service
 @RequiredArgsConstructor
 public class VoiceService {
 
     private final VoiceRepository voiceRepository;
 
-    public PhoneNumberDto getPhoneNumber(String number) {
+    public PhoneNumberDto getPhoneNumber(Long id) {
 
-        Optional<PhoneNumber> phoneNumber = voiceRepository.findById("123");
+        PhoneNumber phoneNumber = voiceRepository.findById(id).get();
 
-        return new PhoneNumberDto("1", "123");
+        return new PhoneNumberDto(phoneNumber.getId(), phoneNumber.getNumber());
+    }
+
+    public String createPhoneNumber(PhoneNumberDto number) {
+
+        PhoneNumber phoneNumber = voiceRepository.save(new PhoneNumber(1L, number.getPhoneNumber()));
+
+        return phoneNumber.getNumber();
+    }
+
+    public String updatePhoneNumber(PhoneNumberDto number) {
+
+        PhoneNumber phoneNumber = voiceRepository.save(new PhoneNumber(1L, number.getPhoneNumber()));
+
+        return phoneNumber.getNumber();
+    }
+
+    public void deletePhoneNumber(Long id) {
+
+        voiceRepository.deleteById(id);
     }
 }
