@@ -19,6 +19,6 @@ public class VoiceService implements NumbersApiDelegate {
 
         return voiceRepository.findById(new PhoneCompositeKey(onkz, number))
                 .map(phoneNumber -> new ResponseEntity<>(phoneNumber.getStatus().name(), HttpStatus.OK))
-                .orElse(new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED));
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
 }
