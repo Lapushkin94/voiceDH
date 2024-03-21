@@ -18,8 +18,8 @@ public class FrontController {
 
     @PostMapping("/submit-phone")
     public String submitPhoneNumber(@ModelAttribute PhoneNumber phoneNumber, Model model) {
-        System.out.println("Submitted Phone Number: " + phoneNumber.getNumber());
-        model.addAttribute("phoneNumber", phoneNumber);
+        //System.out.println("Submitted Phone Number: " + phoneNumber.getNumber());
+        //model.addAttribute("phoneNumber", phoneNumber);
         return "result-page";
     }
 }

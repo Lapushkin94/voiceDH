@@ -1,40 +1,24 @@
 package com.group.interview.services;
 
-import com.group.interview.domain.PhoneNumber;
-import com.group.interview.domain.PhoneNumberDto;
+import com.group.interview.api.NumbersApiDelegate;
+import com.group.interview.domain.PhoneCompositeKey;
 import com.group.interview.repositories.VoiceRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 @Service
 @RequiredArgsConstructor
-public class VoiceService {
+public class VoiceService implements NumbersApiDelegate {
 
     private final VoiceRepository voiceRepository;
 
-    public PhoneNumberDto getPhoneNumber(Long id) {
+    public ResponseEntity<String> getNumberStatus(String onkz,
+                                           String number) {
 
-        PhoneNumber phoneNumber = voiceRepository.findById(id).get();
-
-        return new PhoneNumberDto(phoneNumber.getId(), phoneNumber.getNumber());
-    }
-
-    public String createPhoneNumber(PhoneNumberDto number) {
-
-        PhoneNumber phoneNumber = voiceRepository.save(new PhoneNumber(1L, number.getPhoneNumber()));
-
-        return phoneNumber.getNumber();
-    }
-
-    public String updatePhoneNumber(PhoneNumberDto number) {
-
-        PhoneNumber phoneNumber = voiceRepository.save(new PhoneNumber(1L, number.getPhoneNumber()));
-
-        return phoneNumber.getNumber();
-    }
-
-    public void deletePhoneNumber(Long id) {
-
-        voiceRepository.deleteById(id);
+        return voiceRepository.findById(new PhoneCompositeKey(onkz, number))
+                .map(phoneNumber -> new ResponseEntity<>(phoneNumber.getStatus().name(), HttpStatus.OK))
+                .orElse(new ResponseEntity<>(HttpStatus.NOT_IMPLEMENTED));
     }
 }
