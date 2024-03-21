@@ -7,9 +7,10 @@ import lombok.NoArgsConstructor;
 
 
 @Entity
-@Data
+@Table(name = "phone_numbers")
 @NoArgsConstructor
 @AllArgsConstructor
+@Data
 public class PhoneNumber {
     @EmbeddedId
     private PhoneCompositeKey compositeKey;

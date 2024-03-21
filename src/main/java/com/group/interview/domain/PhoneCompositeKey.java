@@ -14,6 +14,6 @@ import java.io.Serializable;
 public class PhoneCompositeKey implements Serializable {
 
     private String onkz;    // Onkz
-    private String number;  // Number
+    private String phone;  // Number
 
 }
