@@ -5,5 +5,11 @@ import org.springframework.http.ResponseEntity;
 
 public interface VoiceControllerApi {
 
-    ResponseEntity<PhoneNumberDto> getPhoneNumber(String number);
+    ResponseEntity<PhoneNumberDto> getPhoneNumber(Long number);
+
+    ResponseEntity<String> createPhoneNumber(PhoneNumberDto phoneNumberDto);
+
+    ResponseEntity<String> updatePhoneNumber(PhoneNumberDto phoneNumberDto);
+
+    ResponseEntity<String> deletePhoneNumber(Long id);
 }
