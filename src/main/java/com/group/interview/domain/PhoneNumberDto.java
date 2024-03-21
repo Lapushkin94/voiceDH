@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class PhoneNumberDto {
 
     @JsonProperty("id")
-    private String id;
+    private Long id;
 
     @JsonProperty("phoneNumber")
     private String phoneNumber;
