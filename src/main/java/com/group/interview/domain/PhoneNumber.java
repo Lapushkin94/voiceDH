@@ -10,11 +10,8 @@ import lombok.Data;
 @Entity
 @Data
 public class PhoneNumber {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private String onkz;
+
     private String number;
-
-
 }
